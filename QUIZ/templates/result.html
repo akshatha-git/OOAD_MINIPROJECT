@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+    :root {
+      --primary: #7c3aed;
+      --primary-dark: #6d28d9;
+      --background: linear-gradient(to right, #c3aed6, #fbeaff);
+      --white: #ffffff;
+      --text: #1e1b4b;
+      --subtext: #6b7280;
+      --card-bg: #ffffff;
+      --accent: #8b5cf6;
+      --catchy-phrase-color: #333333;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: var(--text);
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 90%;
+      max-width: 600px;
+      transform: translateY(30px);
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    p {
+      font-size: 20px;
+      color: var(--subtext);
+      margin-bottom: 30px;
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: var(--white);
+      padding: 12px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.3s ease;
+      animation: fadeInUp 1.5s ease-out forwards;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+
+    .perfect-score h1 {
+      color: var(--accent);
+      font-size: 48px;
+      animation: scaleUp 1s ease-out forwards;
+    }
+
+    .perfect-score p {
+      color: var(--catchy-phrase-color);
+      font-size: 22px;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleUp {
+      0% {
+        transform: scale(0.85);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container result-box">
+    {% if score == total %}
+      <div class="perfect-score">
+        <h1>🎉 Congratulations! </h1>
+        <p>You scored a perfect <strong>{{ score }}</strong> out of <strong>{{ total }}</strong>! You nailed it! 🌟</p>
+      </div>
+    {% else %}
+      <div class="non-perfect-score">
+        <h1>Your Score</h1>
+        <p>You scored <strong>{{ score }}</strong> out of <strong>{{ total }}</strong>. Keep practicing! 💜</p>
+      </div>
+    {% endif %}
+    <a href="/" class="btn">← Back to Home</a>
+  </div>
+
+</body>
+</html>

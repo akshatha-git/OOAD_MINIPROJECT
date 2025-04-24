@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quiz.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        let timeLeft = 120; // 2 minutes in seconds
+
+        function startTimer() {
+            const timerElement = document.getElementById("timer");
+
+            const countdown = setInterval(function () {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                timerElement.textContent = `⏳ Time Left: ${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert("Time's up! Your quiz will be submitted automatically.");
+                    document.getElementById("quizForm").submit();
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        window.onload = startTimer;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ quiz.title }}</h1>
+        <p id="timer" style="font-size: 18px; color: #ef4444; font-weight: bold; margin-bottom: 20px;"></p>
+
+        <form id="quizForm" method="post">
+            {% set idx = 0 %}
+            {% for q in quiz.questions %}
+            {% set idx = loop.index0 %}
+            <fieldset>
+                <legend>{{ q.question }}</legend>
+                {% for opt in q.options %}
+                <label>
+                    <input type="radio" name="q{{ idx }}" value="{{ opt }}" required> {{ opt }}
+                </label><br>
+                {% endfor %}
+            </fieldset>
+            {% endfor %}
+            <button type="submit" class="btn">Submit Quiz</button>
+        </form>
+    </div>
+</body>
+</html>

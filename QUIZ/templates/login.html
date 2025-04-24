@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Quiz App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&display=swap');
+
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --background: linear-gradient(to right, #c3aed6, #fbeaff);
+            --white: #ffffff;
+            --text: #1e1b4b;
+            --subtext: #6b7280;
+            --accent: #8b5cf6;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 66px;
+            font-weight: 800;
+            color: var(--primary);
+            background: rgba(255, 255, 255, 0.6);
+            padding: 30px 40px;
+            border-radius: 24px;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+            margin-bottom: 40px;
+            animation: dropIn 1s ease-out forwards;
+            transform: translateY(-100px);
+            opacity: 0;
+        }
+
+
+        .login-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            animation: fadeUp 1.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        h2 {
+            font-size: 20px;
+            color: var(--subtext);
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-align: left;
+            color: var(--text);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: white;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Animations */
+        @keyframes dropIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">🎓 Quiz Management System</div>
+
+    <div class="login-box">
+        <h2>Login to Continue</h2>
+        <form method="post">
+            <label for="username">Enter your username:</label>
+            <input type="text" name="username" placeholder="e.g. admin or student" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>

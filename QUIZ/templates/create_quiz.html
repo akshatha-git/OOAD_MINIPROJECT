@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .question-block {
+            margin-bottom: 25px;
+        }
+
+        fieldset {
+            background-color: #f9f5ff;
+            border: 2px solid #d6bbfb;
+            border-radius: 10px;
+            padding: 20px;
+            transition: 0.3s ease;
+        }
+
+        fieldset:hover {
+            background-color: #f3e8ff;
+        }
+
+        input[type="text"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #4c1d95;
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Create a New Quiz</h1>
+
+        <form method="post" id="quizForm">
+            <label for="title">Quiz Title:</label>
+            <input type="text" name="title" placeholder="Enter quiz title" required>
+
+            <div id="question-container">
+                <!-- Initial question block -->
+                <div class="question-block">
+                    <fieldset>
+                        <legend>Question 1</legend>
+                        <input type="text" name="question" placeholder="Enter question" required>
+                        <input type="text" name="option1" placeholder="Option 1" required>
+                        <input type="text" name="option2" placeholder="Option 2" required>
+                        <input type="text" name="option3" placeholder="Option 3" required>
+                        <input type="text" name="option4" placeholder="Option 4" required>
+                        <input type="text" name="answer" placeholder="Correct Answer" required>
+                    </fieldset>
+                </div>
+            </div>
+
+            <button type="button" class="btn" onclick="addQuestion()">+ Add Question</button>
+            <button type="submit" class="btn">Save Quiz</button>
+        </form>
+
+        <a href="/admin_dashboard" class="btn">Back to Dashboard</a>
+    </div>
+
+    <script>
+        let questionCount = 1;
+
+        function addQuestion() {
+            questionCount++;
+            const container = document.getElementById('question-container');
+            const newBlock = document.createElement('div');
+            newBlock.classList.add('question-block');
+
+            newBlock.innerHTML = `
+                <fieldset>
+                    <legend>Question ${questionCount}</legend>
+                    <input type="text" name="question" placeholder="Enter question" required>
+                    <input type="text" name="option1" placeholder="Option 1" required>
+                    <input type="text" name="option2" placeholder="Option 2" required>
+                    <input type="text" name="option3" placeholder="Option 3" required>
+                    <input type="text" name="option4" placeholder="Option 4" required>
+                    <input type="text" name="answer" placeholder="Correct Answer" required>
+                </fieldset>
+            `;
+
+            container.appendChild(newBlock);
+        }
+    </script>
+
+</body>
+</html>

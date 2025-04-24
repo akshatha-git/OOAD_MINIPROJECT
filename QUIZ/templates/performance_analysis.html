@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Analysis</title>
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-dark: #6d28d9;
+            --background: linear-gradient(to right, #c3aed6, #fbeaff);
+            --white: #ffffff;
+            --text: #1e1b4b;
+            --subtext: #6b7280;
+            --card-bg: #ffffff;
+            --accent: #8b5cf6;
+            --catchy-phrase-color: #333333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+        }
+
+        .center-screen {
+            text-align: center;
+            padding: 40px;
+            background: var(--white);
+            margin: 20px auto;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 800px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: var(--primary);
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: var(--white);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .performance-data {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: var(--text);
+        }
+
+        .performance-data p {
+            margin: 5px 0;
+        }
+
+        .graph-container {
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-btn-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="center-screen">
+        <h1>Performance Analysis</h1>
+
+        <!-- Display performance data -->
+        <div class="performance-data">
+            <p><strong>Highest Score:</strong> {{ highest.score if highest else 'N/A' }} ({{ highest.username if highest else 'N/A' }})</p>
+            <p><strong>Lowest Score:</strong> {{ lowest.score if lowest else 'N/A' }} ({{ lowest.username if lowest else 'N/A' }})</p>
+            <p><strong>Average Score:</strong> {{ average if average else 'N/A' }}</p>
+        </div>
+
+        <!-- Display the performance graph -->
+        <div class="graph-container">
+            <h3>Performance Graph:</h3>
+            <img src="data:image/png;base64,{{ img_data }}" alt="Performance Graph">
+        </div>
+
+        <!-- Back button -->
+        <div class="back-btn-container">
+            <a href="{{ url_for('admin_dashboard') }}" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>

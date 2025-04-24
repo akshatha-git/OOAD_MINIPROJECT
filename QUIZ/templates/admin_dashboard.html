@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="center-screen">
+        <h1>Welcome, Admin!</h1>
+        <a href="{{ url_for('create_quiz') }}" class="btn">Create a Quiz</a>
+        <a href="{{ url_for('performance_analysis') }}" class="btn">Performance Analytics</a>
+        <a href="{{ url_for('view_results_admin') }}" class="btn">View All Results</a>
+        <a href="{{ url_for('logout') }}" class="btn">Logout</a>
+    </div>
+
+    <div class="container">
+        <h2>Available Quizzes</h2>
+        {% if quizzes %}
+        <ul>
+            {% for quiz in quizzes %}
+            <li>
+                <strong>{{ quiz.title }}</strong>
+                <div style="display: flex; gap: 10px;">
+                    <a href="{{ url_for('update_quiz', quiz_id=loop.index0) }}" class="btn" style="background-color: #4ade80;">Update</a>
+                    <a href="{{ url_for('delete_quiz', quiz_id=loop.index0) }}" class="btn" style="background-color: #ef4444;">Delete</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>No quizzes available yet.</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
